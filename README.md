@@ -1,4 +1,4 @@
-# 📊 Daily Research Digest
+# Daily Research Digest
 
 An [Agent Skill](https://agentskills.io) that mines your M365 communications to generate a daily research digest powered by the @Researcher agent.
 
@@ -7,7 +7,7 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 
 ---
 
-> ### 💡 One prompt. That's it.
+> ### One prompt. That's it.
 >
 > ```
 > /daily-research-digest
@@ -17,12 +17,12 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 >
 > ```
 > You:      /daily-research-digest
-> Copilot:  📧 Scanning 40 emails... ✅
->           📅 Scanning meetings... ✅
->           💬 Scanning Teams chats... ✅
->           🔍 Top themes: MSRC security incident, RAI test categorization, dependency management
->           🤖 Researching 3 questions via @Researcher...
->           📊 Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
+> Copilot:  Scanning 40 emails... done
+>           Scanning meetings... done
+>           Scanning Teams chats... done
+>           Top themes: MSRC security incident, RAI test categorization, dependency management
+>           Researching 3 questions via @Researcher...
+>           Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
 > ```
 >
 > Want to go deeper? Just say more:
@@ -35,13 +35,13 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 ## What It Does
 
 ```
-📧 Emails + 📅 Meetings + 💬 Teams Chats
-              ↓
-    🔍 Extract top 3 themes
-              ↓
-    🤖 @Researcher × 3 (sequential)
-              ↓
-    📊 Daily Research Digest
+Emails + Meetings + Teams Chats
+              |
+    Extract top 3 themes
+              |
+    @Researcher x 3 (sequential)
+              |
+      Daily Research Digest
 ```
 
 1. **Gathers signals** from your M365 emails, meetings, and Teams chats via [WorkIQ MCP](https://github.com/microsoft/work-iq-mcp)
@@ -149,7 +149,7 @@ See [references/SETUP.md](daily-research-digest/references/SETUP.md) for detaile
 The skill produces a markdown digest saved to `{output_dir}/{date}-daily-research-digest.md`:
 
 ```markdown
-# 📊 Daily Research Digest — 2026-04-06
+# Daily Research Digest — 2026-04-06
 
 ## Signal Summary
 Today's research was driven by recurring discussions about...
@@ -161,7 +161,7 @@ Today's research was driven by recurring discussions about...
 ### Key Takeaways
 - ...
 
-## 🎯 Action Items
+## Action Items
 ...
 
 ## Sources & References
