@@ -17,12 +17,24 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 >
 > ```
 > You:      /daily-research-digest
-> Copilot:  Scanning 40 emails... done
->           Scanning meetings... done
->           Scanning Teams chats... done
->           Top themes: MSRC security incident, RAI test categorization, dependency management
->           Researching 3 questions via @Researcher...
->           Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
+>
+> Copilot:  [1/4] Scanning your M365 signals...
+>              - 40 emails scanned, grouped by theme
+>              - 3 meetings reviewed for agendas and follow-ups
+>              - 6 Teams chats analyzed for technical discussions
+>
+>           [2/4] Extracting top themes from your communications...
+>              - MSRC security incident (CWE-22 path traversal)
+>              - RAI test categorization (XPIA vs Direct vs Overreliance)
+>              - Dependency management across solution accelerators
+>
+>           [3/4] Generating 3 research questions and invoking @Researcher...
+>              - Question 1: MSRC remediation best practices... done
+>              - Question 2: RAI assessment frameworks... done
+>              - Question 3: Dependabot + S360 automation patterns... done
+>
+>           [4/4] Compiling digest with findings, takeaways, and action items...
+>              Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
 > ```
 >
 > Want to go deeper? Just say more:
