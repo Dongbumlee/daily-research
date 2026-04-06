@@ -14,7 +14,6 @@ compatibility: >
   Requires WorkIQ MCP server (@microsoft/workiq), Node.js 18+,
   M365 Entra ID authentication, and @Researcher agent enabled in tenant.
   Network access needed for M365 Graph API calls.
-license: MIT
 allowed-tools: ask_work_iq accept_eula bash
 metadata:
   author: donlee
@@ -71,15 +70,17 @@ Generate 3 **specific, actionable** research questions, each prefixed with `@Res
 
 If a `custom_focus` was provided, weight questions toward that topic. If all signals are empty, fall back to current Azure AI / agent architecture trends with a clear note.
 
-### Phase 3: Invoke @Researcher (3 Parallel Calls)
+### Phase 3: Invoke @Researcher (Sequential — One at a Time)
 
-Send each question to M365 Copilot via `ask_work_iq`:
+Send each question to M365 Copilot via `ask_work_iq` **sequentially** to avoid WorkIQ timeout issues caused by concurrent requests:
 
 ```
-ask_work_iq: "@Researcher {research_question}"
+ask_work_iq: "@Researcher {research_question_1}"   # wait for response
+ask_work_iq: "@Researcher {research_question_2}"   # wait for response
+ask_work_iq: "@Researcher {research_question_3}"   # wait for response
 ```
 
-Run all 3 in parallel. Allow 1 retry per question. On failure, record the original question for manual execution.
+**Important:** Do NOT run these in parallel. Send one question, wait for the full response (or timeout), then send the next. Allow 1 retry per question. On failure, record the original question for manual execution.
 
 ### Phase 4: Compile & Save Digest
 
