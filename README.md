@@ -2,7 +2,8 @@
 
 An [Agent Skill](https://agentskills.io) that mines your M365 communications to generate a daily research digest powered by the @Researcher agent.
 
-**Works with:** GitHub Copilot in VS Code · GitHub Copilot CLI · GitHub Copilot coding agent
+**Works with:** GitHub Copilot in VS Code · GitHub Copilot CLI · GitHub Copilot coding agent  
+**Platforms:** Windows · macOS · Linux
 
 ## What It Does
 
@@ -11,38 +12,73 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
               ↓
     🔍 Extract top 3 themes
               ↓
-    🤖 @Researcher × 3 (parallel)
+    🤖 @Researcher × 3 (sequential)
               ↓
     📊 Daily Research Digest
 ```
 
 1. **Gathers signals** from your M365 emails, meetings, and Teams chats via [WorkIQ MCP](https://github.com/microsoft/work-iq-mcp)
 2. **Analyzes themes** through a Senior Architecture Specialist / Principal Engineer lens
-3. **Generates 3 research questions** and invokes the @Researcher agent in parallel
+3. **Generates 3 research questions** and invokes the @Researcher agent sequentially
 4. **Compiles a digest** with findings, takeaways, and action items
 
 ## Quick Install
 
 ### Option A: Project skill (shared with your team)
 
+<details>
+<summary><strong>macOS / Linux</strong></summary>
+
 ```bash
-# Copy into your repository
 cp -r daily-research-digest/ .github/skills/
 ```
+</details>
+
+<details>
+<summary><strong>Windows (PowerShell)</strong></summary>
+
+```powershell
+Copy-Item -Recurse daily-research-digest/ .github/skills/
+```
+</details>
 
 ### Option B: Personal skill (just for you)
 
+<details>
+<summary><strong>macOS / Linux</strong></summary>
+
 ```bash
-# Copy into your user profile
 cp -r daily-research-digest/ ~/.copilot/skills/
 ```
+</details>
+
+<details>
+<summary><strong>Windows (PowerShell)</strong></summary>
+
+```powershell
+Copy-Item -Recurse daily-research-digest/ $env:USERPROFILE\.copilot\skills\
+```
+</details>
 
 ### Option C: Clone this repo directly
+
+<details>
+<summary><strong>macOS / Linux</strong></summary>
 
 ```bash
 git clone https://github.com/Dongbumlee/daily-research.git
 cp -r daily-research/daily-research-digest/ ~/.copilot/skills/
 ```
+</details>
+
+<details>
+<summary><strong>Windows (PowerShell)</strong></summary>
+
+```powershell
+git clone https://github.com/Dongbumlee/daily-research.git
+Copy-Item -Recurse daily-research\daily-research-digest\ $env:USERPROFILE\.copilot\skills\
+```
+</details>
 
 ## Prerequisites
 
@@ -51,7 +87,7 @@ cp -r daily-research/daily-research-digest/ ~/.copilot/skills/
 | **WorkIQ MCP server** | `npm install -g @microsoft/workiq` — [setup guide](daily-research-digest/references/SETUP.md) |
 | **M365 authentication** | Entra ID login (browser flow on first use) |
 | **@Researcher agent** | Must be enabled in your M365 tenant |
-| **Node.js 18+** | `node -v` to check, `nvm install --lts` to upgrade |
+| **Node.js 18+** | `node -v` to check — install via [nvm](https://github.com/nvm-sh/nvm) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) (Windows) |
 
 See [references/SETUP.md](daily-research-digest/references/SETUP.md) for detailed setup instructions.
 
