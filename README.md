@@ -124,10 +124,12 @@ Follows the [Agent Skills specification](https://agentskills.io/specification) w
 
 | Phase | What Happens | Tools Used |
 |-------|-------------|------------|
-| **1. Gather Signals** | Queries M365 for emails, meetings, Teams chats | `ask_work_iq` × 3 |
+| **1. Gather Signals** | Queries M365 for emails, meetings, Teams chats | `ask_work_iq` × 3 (parallel) |
 | **2. Analyze Themes** | Identifies top 3 themes across all channels | AI reasoning |
-| **3. Research** | Sends 3 questions to @Researcher in parallel | `ask_work_iq` × 3 |
+| **3. Research** | Sends 3 questions to @Researcher sequentially | `ask_work_iq` × 3 (one at a time) |
 | **4. Compile** | Formats digest with findings + action items | AI writing + `bash` |
+
+> **Why sequential?** Concurrent @Researcher calls through WorkIQ can cause timeouts on deep queries. Sequential invocation is more reliable — each question waits for a full response before the next one is sent.
 
 ## Customization
 
