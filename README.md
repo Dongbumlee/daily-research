@@ -5,6 +5,33 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 **Works with:** GitHub Copilot in VS Code · GitHub Copilot CLI · GitHub Copilot coding agent  
 **Platforms:** Windows · macOS · Linux
 
+---
+
+> ### 💡 One prompt. That's it.
+>
+> ```
+> /daily-research-digest
+> ```
+>
+> Copilot reads your emails, meetings, and Teams chats — finds what matters — researches it — and delivers a digest. No context-switching, no manual searching.
+>
+> ```
+> You:      /daily-research-digest
+> Copilot:  📧 Scanning 40 emails... ✅
+>           📅 Scanning meetings... ✅
+>           💬 Scanning Teams chats... ✅
+>           🔍 Top themes: MSRC security incident, RAI test categorization, dependency management
+>           🤖 Researching 3 questions via @Researcher...
+>           📊 Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
+> ```
+>
+> Want to go deeper? Just say more:
+> ```
+> /daily-research-digest 3 days Foundry Agents
+> ```
+
+---
+
 ## What It Does
 
 ```
