@@ -89,7 +89,7 @@ ask_work_iq: "@Researcher {research_question}"   # for exploration/synthesis
 ask_work_iq: "@Analyst {research_question}"       # for data/quantitative
 ```
 
-Run all 3 in parallel. Allow 1 retry per question. If @Analyst is unavailable (tenant not enabled), fall back to @Researcher and note the fallback. On complete failure, record the original question for manual execution.
+Run all 3 sequentially — each question waits for a full response before the next is sent. Allow 1 retry per question. If @Analyst is unavailable (tenant not enabled), fall back to @Researcher and note the fallback. On complete failure, record the original question for manual execution.
 
 ### Phase 4: Compile & Save Digest
 

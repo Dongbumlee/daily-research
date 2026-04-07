@@ -203,10 +203,10 @@ Follows the [Agent Skills specification](https://agentskills.io/specification) w
 |-------|-------------|------------|
 | **1. Gather Signals** | Queries M365 for emails, meetings, Teams chats | `ask_work_iq` × 3 (parallel) |
 | **2. Analyze & Route** | Identifies top 3 themes; routes each to @Researcher or @Analyst | AI reasoning |
-| **3. Research** | Sends 3 questions to assigned agents in parallel | `ask_work_iq` × 3 (parallel) |
+| **3. Research** | Sends 3 questions to assigned agents sequentially | `ask_work_iq` × 3 (one at a time) |
 | **4. Compile** | Formats digest with findings + agent attribution | AI writing + `bash` |
 
-> **Agent routing:** Each question is automatically routed to the best-fit agent — @Researcher for broad synthesis and exploration, @Analyst for quantitative analysis and data reasoning. If @Analyst is unavailable in the tenant, it falls back to @Researcher.
+> **Why sequential?** Concurrent @Researcher / @Analyst calls through WorkIQ can cause timeouts on deep queries. Sequential invocation is more reliable — each question waits for a full response before the next one is sent.
 
 ## Customization
 
