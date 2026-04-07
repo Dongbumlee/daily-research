@@ -1,6 +1,6 @@
 # Daily Research Digest
 
-An [Agent Skill](https://agentskills.io) that mines your M365 communications to generate a daily research digest powered by the @Researcher agent.
+An [Agent Skill](https://agentskills.io) that mines your M365 communications to generate a daily research digest powered by the @Researcher and @Analyst agents.
 
 **Works with:** GitHub Copilot in VS Code · GitHub Copilot CLI · GitHub Copilot coding agent  
 **Platforms:** Windows · macOS · Linux
@@ -28,10 +28,10 @@ An [Agent Skill](https://agentskills.io) that mines your M365 communications to 
 >              - RAI test categorization (XPIA vs Direct vs Overreliance)
 >              - Dependency management across solution accelerators
 >
->           [3/4] Generating 3 research questions and invoking @Researcher...
->              - Question 1: MSRC remediation best practices... done
->              - Question 2: RAI assessment frameworks... done
->              - Question 3: Dependabot + S360 automation patterns... done
+>           [3/4] Routing 3 research questions to @Researcher / @Analyst...
+>              - Question 1 → @Researcher: MSRC remediation best practices... done
+>              - Question 2 → @Researcher: RAI assessment frameworks... done
+>              - Question 3 → @Analyst: S360 compliance metrics & automation... done
 >
 >           [4/4] Compiling digest with findings, takeaways, and action items...
 >              Daily digest saved → prompts/daily-research-results/2026-04-06-daily-research-digest.md
@@ -51,14 +51,15 @@ Emails + Meetings + Teams Chats
               |
     Extract top 3 themes
               |
-    @Researcher x 3 (sequential)
+    Route each question to best-fit agent
+    @Researcher (synthesis) or @Analyst (data)
               |
       Daily Research Digest
 ```
 
 1. **Gathers signals** from your M365 emails, meetings, and Teams chats via [WorkIQ MCP](https://github.com/microsoft/work-iq-mcp)
 2. **Analyzes themes** through a Senior Architecture Specialist / Principal Engineer lens
-3. **Generates 3 research questions** and invokes the @Researcher agent sequentially
+3. **Generates 3 research questions** and routes each to **@Researcher** (broad synthesis) or **@Analyst** (quantitative/data) based on context
 4. **Compiles a digest** with findings, takeaways, and action items
 
 ## Quick Install
@@ -125,7 +126,7 @@ Copy-Item -Recurse daily-research\daily-research-digest\ $env:USERPROFILE\.copil
 |-------------|---------------|
 | **WorkIQ MCP server** | `npm install -g @microsoft/workiq` — [setup guide](daily-research-digest/references/SETUP.md) |
 | **M365 authentication** | Entra ID login (browser flow on first use) |
-| **@Researcher agent** | Must be enabled in your M365 tenant |
+| **@Researcher + @Analyst agents** | Must be enabled in your M365 tenant (@Analyst optional — falls back to @Researcher) |
 | **Node.js 18+** | `node -v` to check — install via [nvm](https://github.com/nvm-sh/nvm) (macOS/Linux) or [nvm-windows](https://github.com/coreybutler/nvm-windows) (Windows) |
 
 See [references/SETUP.md](daily-research-digest/references/SETUP.md) for detailed setup instructions.
@@ -168,6 +169,7 @@ Today's research was driven by recurring discussions about...
 
 ## Research Topic 1: Foundry Agents Tool Optimization
 **Question:** @Researcher ...
+**Agent:** 🔬 Researcher
 ### Findings
 ...
 ### Key Takeaways
@@ -200,11 +202,11 @@ Follows the [Agent Skills specification](https://agentskills.io/specification) w
 | Phase | What Happens | Tools Used |
 |-------|-------------|------------|
 | **1. Gather Signals** | Queries M365 for emails, meetings, Teams chats | `ask_work_iq` × 3 (parallel) |
-| **2. Analyze Themes** | Identifies top 3 themes across all channels | AI reasoning |
-| **3. Research** | Sends 3 questions to @Researcher sequentially | `ask_work_iq` × 3 (one at a time) |
-| **4. Compile** | Formats digest with findings + action items | AI writing + `bash` |
+| **2. Analyze & Route** | Identifies top 3 themes; routes each to @Researcher or @Analyst | AI reasoning |
+| **3. Research** | Sends 3 questions to assigned agents in parallel | `ask_work_iq` × 3 (parallel) |
+| **4. Compile** | Formats digest with findings + agent attribution | AI writing + `bash` |
 
-> **Why sequential?** Concurrent @Researcher calls through WorkIQ can cause timeouts on deep queries. Sequential invocation is more reliable — each question waits for a full response before the next one is sent.
+> **Agent routing:** Each question is automatically routed to the best-fit agent — @Researcher for broad synthesis and exploration, @Analyst for quantitative analysis and data reasoning. If @Analyst is unavailable in the tenant, it falls back to @Researcher.
 
 ## Customization
 
